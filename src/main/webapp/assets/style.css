@@ -1,0 +1,246 @@
+/* ==========================================================
+   Student Management System — shared stylesheet
+   ========================================================== */
+
+:root {
+    --navy: #1e2a3a;
+    --navy-dark: #131c27;
+    --blue: #3498db;
+    --blue-dark: #2980b9;
+    --green: #27ae60;
+    --green-dark: #219150;
+    --red: #e74c3c;
+    --red-dark: #c0392b;
+    --ink: #2c3e50;
+    --paper: #ffffff;
+    --bg: #eef2f6;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 40px 32px 60px;
+    color: var(--ink);
+    min-height: 100vh;
+
+    /* Soft gradient base */
+    background-color: var(--bg);
+    background-image:
+        /* Graduation cap, top-right */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 100 100'><g fill='%23345678' fill-opacity='0.07'><path d='M50 15 L95 33 L50 51 L5 33 Z'/><path d='M28 40 L28 60 Q50 74 72 60 L72 40 L50 49 Z'/><rect x='90' y='33' width='3' height='26'/></g></svg>"),
+        /* Open book, bottom-left */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 100 100'><g fill='%23345678' fill-opacity='0.06'><path d='M50 20 C40 12 20 12 10 18 L10 75 C20 69 40 69 50 77 Z'/><path d='M50 20 C60 12 80 12 90 18 L90 75 C80 69 60 69 50 77 Z'/></g></svg>"),
+        /* Pencil, bottom-right */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 100 100'><g fill='%23345678' fill-opacity='0.06'><rect x='30' y='0' width='16' height='70' rx='2' transform='rotate(35 38 35)'/><path d='M55 62 L70 78 L58 90 L48 74 Z' transform='rotate(35 38 35)'/></g></svg>"),
+        /* Apple, top-left */
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='110' height='110' viewBox='0 0 100 100'><g fill='%23345678' fill-opacity='0.06'><path d='M50 35 C30 30 20 50 25 65 C29 78 40 88 50 88 C60 88 71 78 75 65 C80 50 70 30 50 35 Z'/><path d='M50 35 C48 25 52 18 60 15 C58 24 54 30 50 35 Z'/></g></svg>"),
+        linear-gradient(160deg, #eef2f6 0%, #e7edf4 100%);
+    background-repeat: no-repeat;
+    background-position:
+        top right,
+        bottom -20px left -20px,
+        bottom right -10px,
+        top left,
+        0 0;
+    background-size:
+        140px 140px,
+        200px 200px,
+        140px 140px,
+        130px 130px,
+        cover;
+    background-attachment: fixed;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+    max-width: 1100px;
+    margin: 0 auto 28px;
+}
+
+.app-title {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-size: 2.4rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin: 0;
+    background: linear-gradient(90deg, var(--navy) 0%, var(--blue) 60%, var(--green) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.app-title .cap-icon {
+    flex-shrink: 0;
+    filter: drop-shadow(0 2px 4px rgba(30, 42, 58, 0.25));
+}
+
+.app-underline {
+    height: 4px;
+    width: 86px;
+    margin-top: 10px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--blue), var(--green));
+}
+
+/* ---------- Card container ---------- */
+.card {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--paper);
+    border-radius: 14px;
+    padding: 28px 28px 8px;
+    box-shadow: 0 10px 30px rgba(30, 42, 58, 0.08), 0 2px 6px rgba(30, 42, 58, 0.05);
+}
+
+/* ---------- Buttons (shared) ---------- */
+a.add-new, a.button, button[type="submit"] {
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+a.add-new {
+    padding: 12px 22px;
+    margin-bottom: 22px;
+    background: linear-gradient(135deg, var(--green), var(--green-dark));
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.3);
+}
+a.add-new:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 18px rgba(39, 174, 96, 0.4);
+}
+a.add-new:active { transform: translateY(0) scale(0.98); }
+
+a.button {
+    padding: 7px 14px;
+    margin-right: 6px;
+    background: var(--blue);
+    color: #fff;
+    border-radius: 6px;
+    font-size: 13px;
+    box-shadow: 0 2px 6px rgba(52, 152, 219, 0.3);
+}
+a.button:hover {
+    background: var(--blue-dark);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 14px rgba(52, 152, 219, 0.4);
+}
+a.button:active { transform: translateY(0) scale(0.97); }
+
+a.delete { background: var(--red); box-shadow: 0 2px 6px rgba(231, 76, 60, 0.3); }
+a.delete:hover { background: var(--red-dark); box-shadow: 0 6px 14px rgba(231, 76, 60, 0.4); }
+
+/* ---------- Table ---------- */
+table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    margin-bottom: 24px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+}
+
+th, td {
+    padding: 13px 16px;
+    text-align: left;
+}
+
+th {
+    background: linear-gradient(135deg, var(--navy), var(--navy-dark));
+    color: #fff;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+tbody tr {
+    background: var(--paper);
+    transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+}
+tbody tr:nth-child(even) { background: #f7f9fb; }
+tbody tr:hover {
+    background: #eaf4fd;
+    transform: scale(1.005);
+    box-shadow: 0 4px 14px rgba(30, 42, 58, 0.08);
+    position: relative;
+    z-index: 1;
+}
+td { border-bottom: 1px solid #edf1f5; }
+
+.empty {
+    padding: 24px 4px;
+    color: #888;
+    font-style: italic;
+}
+
+/* ---------- Form page ---------- */
+form.student-form {
+    background: var(--paper);
+    padding: 0;
+    max-width: 440px;
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+form.student-form label {
+    display: block;
+    margin-top: 16px;
+    font-weight: 600;
+    color: #445;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+form.student-form input {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    box-sizing: border-box;
+    border: 1.5px solid #dce3ea;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+form.student-form input:focus {
+    outline: none;
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+button[type="submit"] {
+    margin-top: 22px;
+    padding: 11px 24px;
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+    color: #fff;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+button[type="submit"]:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 18px rgba(52, 152, 219, 0.4);
+}
+button[type="submit"]:active { transform: translateY(0) scale(0.98); }
+
+a.back {
+    display: inline-block;
+    margin-top: 18px;
+    color: #667;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.15s ease, transform 0.15s ease;
+}
+a.back:hover { color: var(--blue); transform: translateX(-3px); }
