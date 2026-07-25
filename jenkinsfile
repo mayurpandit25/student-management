@@ -1,0 +1,14 @@
+pipeline {
+    agent {
+        label "worker"
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/mayurpandit25/student-management.git'
+                echo 'clonning is successful'
+            }
+        }
+    }
+}
