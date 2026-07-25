@@ -3,6 +3,10 @@ pipeline {
         label "worker"
     }
 
+    tools {
+        maven "maven1"
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -10,5 +14,22 @@ pipeline {
                 echo 'clonning is successful'
             }
         }
+
+        stage('Build') {
+            steps {
+                sh '''
+                mvn clean package
+                '''
+                echo 'Build is successful'
+            }
+            post {
+                success {
+                    archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+                }
+            }
+        }
     }
 }
+
+
+
