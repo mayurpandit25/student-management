@@ -79,6 +79,29 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deployment with k8s') {
+            steps {
+                dir('k8s') {
+                    sh '''
+                    kubectl apply -f namespace.yaml
+                    kubectl apply -f student-deployment.yaml
+                    kubectl apply -f student-svc.yaml
+                    sleep 30
+                    kubectl get pods
+                    kubectl get svc -o wide
+                    '''
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline is successful.'
+        }
+        failure {
+            echo 'Pipeline is failed.'
+        }
     }
 }
-
