@@ -1,10 +1,10 @@
 pipeline {
     agent {
-        label "worker"
+        label 'worker'
     }
 
     tools {
-        maven "maven1"
+        maven 'maven1'
     }
 
     stages {
