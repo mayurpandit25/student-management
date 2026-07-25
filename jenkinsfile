@@ -84,7 +84,7 @@ pipeline {
             steps {
                 dir('k8s') {
                     sh '''
-                    aws eks update-kubeconfig --region us-east-2 --name eks-cluster
+                    aws eks update-kubeconfig --region us-east-2 --name my-cluster
                     kubectl apply -f namespace.yaml
                     kubectl apply -f student-deployment.yaml
                     kubectl apply -f student-svc.yaml
