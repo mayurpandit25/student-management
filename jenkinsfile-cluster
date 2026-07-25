@@ -1,0 +1,49 @@
+pipeline {
+    agent {
+        label 'worker'
+    }
+
+    tools {
+        terraform 'tf-install'
+    }
+
+    environment {
+        my_aws_credentials = credentials('aws-access')
+    }
+    
+    stages {
+        stage('Terraform Init') {
+            steps {
+                sh 'terraform init'
+            }
+        }
+
+        stage('Terraform fmt') {
+            steps {
+                sh '''
+                terraform fmt
+                '''
+            }
+        }
+
+        stage('Terraform Validate') {
+            steps {
+                sh '''
+                terraform validate
+                '''
+            }
+        }
+
+        stage('Terraform Plan') {
+            steps {
+                sh 'terraform plan'
+            }
+        }
+
+        stage('Terraform Apply') {
+            steps {
+                sh 'terraform apply -auto-approve'
+            }
+        }
+    }
+}
