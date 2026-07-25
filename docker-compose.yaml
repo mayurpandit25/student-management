@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_DATABASE: school_db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    ports:
+      - "3306:3306"
+
+#"If your service name is mysql, then you can also add mysql in the db.properties."
+
+  studentapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: studentapp
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
