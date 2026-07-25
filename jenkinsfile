@@ -89,8 +89,8 @@ pipeline {
                     kubectl apply -f student-deployment.yaml
                     kubectl apply -f student-svc.yaml
                     sleep 30
-                    kubectl get pods
-                    kubectl get svc -o wide
+                    kubectl get pods -n student
+                    kubectl get svc -o wide -n student
                     '''
                 }
             }
