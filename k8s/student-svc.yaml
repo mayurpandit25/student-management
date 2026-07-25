@@ -6,7 +6,7 @@ metadata:
     app: student 
   namespace: student
 spec: 
-  type: NodePort 
+  type: LoadBalancer
   selector: 
     app: student 
   ports: 
