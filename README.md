@@ -6,7 +6,7 @@
    ```bash
    sudo apt update
    sudo apt install -y openjdk-21-jdk
-   java -version
+   java --version
    ```
 
 2. **Maven**
