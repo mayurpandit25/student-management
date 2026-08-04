@@ -12,24 +12,29 @@ pipeline {
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 git 'https://github.com/mayurpandit25/student-management.git'
-                echo 'clonning is successful'
             }
         }
 
         stage('Build') {
             steps {
-                sh '''
-                mvn clean package
-                '''
-                echo 'Build is successful'
+                sh 'mvn clean package'
             }
             post {
                 success {
                     archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
                 }
+            }
+        }
+
+        stage('Upload Artifact to S3') {
+            steps {
+                sh '''
+                aws s3 cp target/*.war s3://mayurcbz.space/artifacts/student.war
+                '''
             }
         }
 
@@ -48,6 +53,7 @@ pipeline {
                         try {
                             def qg = waitForQualityGate()
                             echo "Quality Gate Status: ${qg.status}"
+
                             if (qg.status != 'OK') {
                                 error "Quality Gate failed: ${qg.status}"
                             }
@@ -80,15 +86,29 @@ pipeline {
             }
         }
 
+        stage('Manual Approval') {
+            steps {
+                script {
+                    input(
+                        message: 'Docker image has been pushed to AWS ECR. Do you want to deploy to Kubernetes?',
+                        ok: 'Deploy'
+                    )
+                }
+            }
+        }
+
         stage('Deployment with k8s') {
             steps {
                 dir('k8s') {
                     sh '''
                     aws eks update-kubeconfig --region us-east-2 --name my-cluster
+
                     kubectl apply -f namespace.yaml
                     kubectl apply -f student-deployment.yaml
                     kubectl apply -f student-svc.yaml
+
                     sleep 30
+
                     kubectl get pods -n student
                     kubectl get svc -o wide -n student
                     '''
@@ -101,6 +121,7 @@ pipeline {
         success {
             echo 'Pipeline is successful.'
         }
+
         failure {
             echo 'Pipeline is failed.'
         }
