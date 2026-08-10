@@ -7,6 +7,18 @@ pipeline {
         stage('checkout'){
             steps {
                 git 'https://github.com/mayurpandit25/student-management.git'
+                sh '''
+                echo "clonning is successful"
+                '''
+            }
+        }
+
+        stage('Build'){
+            steps {
+                sh '''
+                mvn clean package
+                echo "build is successful"
+                '''
             }
         }
     }
