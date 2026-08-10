@@ -3,6 +3,10 @@ pipeline {
         label "worker"
     }
 
+    environment {
+        my_aws_credentials = credentials('aws-access')
+    }
+
     tools {
         maven "maven"
     }
