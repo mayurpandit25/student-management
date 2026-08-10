@@ -24,6 +24,11 @@ pipeline {
                 echo "build is successful"
                 '''
             }
+            post {
+                success {
+                    archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+                }
+            }
         }
     }
 }
