@@ -1,16 +1,15 @@
-apiVersion: v1 
-kind: Service 
-metadata: 
-  name: student-svc 
-  labels: 
-    app: student 
-  namespace: student
-spec: 
+apiVersion: v1
+kind: Service
+metadata:
+  name: student-svc
+  labels:
+    app: student
+spec:
   type: LoadBalancer
-  selector: 
-    app: student 
-  ports: 
-    - name: student-svc-port
-      protocol: TCP 
+  selector:
+    app: student
+  ports:
+    - name: student-svc
+      protocol: TCP
       port: 8080
       targetPort: 8080
