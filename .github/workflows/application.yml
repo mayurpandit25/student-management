@@ -48,7 +48,7 @@ jobs:
       - name: SonarQube Quality Gates
         run: |
           STATUS=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
-            "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=student-management" \
+            "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=com.school:student-management" \
             | jq -r '.projectStatus.status')
           echo "Quality Gate: $STATUS"
           [ "$STATUS" = "OK" ] || exit 1
