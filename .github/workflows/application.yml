@@ -36,25 +36,11 @@ jobs:
       - name: Upload Artifacts to S3 bucket
         run: aws s3 cp target/*.war s3://mayurcbz.space/student.war
 
-      - name: Check SonarQube Token
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: |
-          if [ -z "$SONAR_TOKEN" ]; then
-            echo "ERROR: SONAR_TOKEN is empty"
-            exit 1
-          else
-            echo "SONAR_TOKEN is available"
-          fi
-
       - name: SonarQube Analysis
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
         run: |
           mvn sonar:sonar \
-            -Dsonar.host.url="$SONAR_HOST_URL" \
-            -Dsonar.token="$SONAR_TOKEN"
+            -Dsonar.host.url=${{ secrets.SONAR_TOKEN }} \
+            -Dsonar.token=${{ secrets.SONAR_HOST_URL }}
 
       - name: Build Successful
         run: echo "student-management Build is successful"
