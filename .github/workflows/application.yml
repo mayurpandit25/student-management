@@ -53,6 +53,9 @@ jobs:
           echo "Quality Gate: $STATUS"
           [ "$STATUS" = "OK" ] || exit 1
 
+      - name: Docker Build Image
+        run: docker build -t studentapp .
+
       - name: Build Successful
         run: echo "student-management Build is successful"
         
