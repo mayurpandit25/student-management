@@ -73,6 +73,12 @@ jobs:
       - name: Trivy Image Scanning
         run: trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 0 studentapp:latest
 
+      - name: Push Image To ECR
+        run: |
+          aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 525382241025.dkr.ecr.us-west-2.amazonaws.com
+          docker tag studentapp:latest 525382241025.dkr.ecr.us-west-2.amazonaws.com/studentapp:latest
+          docker push 525382241025.dkr.ecr.us-west-2.amazonaws.com/studentapp:latest
+
       - name: Build Successful
         run: echo "student-management Build is successful"
         
