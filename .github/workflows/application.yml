@@ -91,7 +91,18 @@ jobs:
           docker tag studentapp:latest 525382241025.dkr.ecr.us-west-2.amazonaws.com/studentapp:latest
           docker push 525382241025.dkr.ecr.us-west-2.amazonaws.com/studentapp:latest
 
+      - name: Setup Kubectl 
+        uses: azure/setup-kubectl@v5
+        with:
+          version: latest
+
+      - name: Deployment on EKS 
+        run: |
+          aws eks update-kubeconfig --name my-eks-cluster --region us-west-2
+          kubectl apply -f k8s/student-deploy.yaml
+          kubectl apply -f k8s/student-svc.yaml
+          kubectl get pods 
+          kubectl get svc -o wide
+
       - name: Build Successful
         run: echo "student-management Build is successful"
-        
-
