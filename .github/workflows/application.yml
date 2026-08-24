@@ -45,5 +45,13 @@ jobs:
             -Dsonar.host.url="$SONAR_HOST_URL" \
             -Dsonar.token="$SONAR_TOKEN"
 
+      - name: SonarQube Quality Gates
+        run: |
+          STATUS=$(curl -s -u "${{ secrets.SONAR_TOKEN }}:" \
+            "${{ secrets.SONAR_HOST_URL }}/api/qualitygates/project_status?projectKey=student-management" \
+            | jq -r '.projectStatus.status')
+          echo "Quality Gate: $STATUS"
+          [ "$STATUS" = "OK" ] || exit 1
+
       - name: Build Successful
         run: echo "student-management Build is successful"
