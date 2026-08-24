@@ -36,5 +36,11 @@ jobs:
       - name: Upload Artifacts to S3 bucket
         run: aws s3 cp target/*.war s3://mayurcbz.space/student.war
 
+      - name: SonarQube Analysis
+        run: |
+          mvn sonar:sonar \
+            -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
+            -Dsonar.token=${{ secrets.SONAR_TOKEN }}
+
       - name: Build Successful
         run: echo "student-management Build is successful"
