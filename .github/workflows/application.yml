@@ -54,7 +54,9 @@ jobs:
           [ "$STATUS" = "OK" ] || exit 1
 
       - name: Docker Build Image
-        run: docker build -t studentapp .
+        run: | 
+          docker build -t studentapp .
+          docker images
 
       - name: Build Successful
         run: echo "student-management Build is successful"
