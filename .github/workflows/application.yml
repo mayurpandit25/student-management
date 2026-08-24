@@ -58,6 +58,21 @@ jobs:
           docker build -t studentapp .
           docker images
 
+      - name: Trivy Install 
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget 
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | \
+            gpg --dearmor | \
+            sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | \
+            sudo tee /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install -y trivy
+
+      - name: Trivy Image Scanning
+        run: trivy image --severity HIGH,CRITICAL studentapp:latest
+
       - name: Build Successful
         run: echo "student-management Build is successful"
         
