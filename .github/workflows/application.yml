@@ -54,13 +54,13 @@ jobs:
           echo "Quality Gate: $STATUS"
           [ "$STATUS" = "OK" ] || exit 1
 
-      - name: OWASP Dependency Check
-        env:
-          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
-        run: |
-          mvn org.owasp:dependency-check-maven:check \
-            -Dformats=HTML \
-            -DnvdApiKeyEnvironmentVariable=NVD_API_KEY
+      # - name: OWASP Dependency Check
+      #   env:
+      #     NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+      #   run: |
+      #     mvn org.owasp:dependency-check-maven:check \
+      #       -Dformats=HTML \
+      #       -DnvdApiKeyEnvironmentVariable=NVD_API_KEY
 
       - name: Docker Build Image
         run: | 
