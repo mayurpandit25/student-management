@@ -54,6 +54,9 @@ jobs:
           echo "Quality Gate: $STATUS"
           [ "$STATUS" = "OK" ] || exit 1
 
+      - name: OWASP Dependency Check
+        run: mvn org.owasp:dependency-check-maven:check -Dformats=HTML
+
       - name: Docker Build Image
         run: | 
           docker build -t studentapp .
