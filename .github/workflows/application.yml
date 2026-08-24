@@ -8,6 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: production
 
     steps:
       - name: Checkout Code
@@ -74,7 +75,6 @@ jobs:
         run: trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 0 studentapp:latest
 
       - name: Manual Approval
-        environment: production
         run: echo "Deployment Approved"
 
       - name: Push Image To ECR
