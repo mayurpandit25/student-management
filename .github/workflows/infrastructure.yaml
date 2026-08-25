@@ -1,6 +1,13 @@
-name: Creating Infrastructure for student-management
+name: EKS Infrastructure
 
 on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/infrastructure.yml'
+      
   workflow_dispatch:
 
 jobs:
