@@ -11,9 +11,10 @@ terraform {
 }
 
   backend "s3" {
-    bucket = "mayurcbz.space"
-    key    = "student-management/eks/terraform.tfstate"
-    region = "us-west-2"
+    bucket       = "mayurcbz.space"
+    key          = "student-management/eks/terraform.tfstate"
+    region       = "us-west-2"
+    use_lockfile = true
   }
 }
 
