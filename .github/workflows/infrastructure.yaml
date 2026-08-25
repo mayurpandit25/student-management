@@ -1,39 +1,39 @@
-name: EKS Infrastructure
+# name: EKS Infrastructure
 
-on:
-  push:
-    branches:
-      - master
-    paths:
-      - '*.tf'
-      - '.github/workflows/infrastructure.yaml'
+# on:
+#   push:
+#     branches:
+#       - master
+#     paths:
+#       - '*.tf'
+#       - '.github/workflows/infrastructure.yaml'
       
-  workflow_dispatch:
+#   workflow_dispatch:
 
-jobs:
-  terraform:
-    runs-on: ubuntu-latest
+# jobs:
+#   terraform:
+#     runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v5 
+#     steps:
+#       - name: Checkout Code
+#         uses: actions/checkout@v5 
 
-      - name: Configure AWS Credentials 
-        uses: aws-actions/configure-aws-credentials@v5
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: us-west-2
+#       - name: Configure AWS Credentials 
+#         uses: aws-actions/configure-aws-credentials@v5
+#         with:
+#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws-region: us-west-2
 
-      - name: Setup Terraform 
-        uses: hashicorp/setup-terraform@v3 
+#       - name: Setup Terraform 
+#         uses: hashicorp/setup-terraform@v3 
 
-      - name: Terraform Init 
-        run: terraform init
+#       - name: Terraform Init 
+#         run: terraform init
 
-      - name: Terraform validate
-        run: terraform validate
+#       - name: Terraform validate
+#         run: terraform validate
 
-      - name: Terraform Apply
-        run: terraform apply -auto-approve
+#       - name: Terraform Apply
+#         run: terraform apply -auto-approve
 
