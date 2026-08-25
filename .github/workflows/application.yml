@@ -32,3 +32,7 @@ jobs:
 
       - name: Test Aws Connection 
         run: aws sts get-caller-identity 
+
+      - name: Store Artifacts to S3
+        run: aws s3 cp target/*.war s3://mayurcbz.space/student.war 
+        
