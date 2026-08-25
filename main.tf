@@ -10,6 +10,13 @@ terraform {
   }
 }
 
+  backend "s3" {
+    bucket = "mayurcbz.space"
+    key    = "student-management/eks/terraform.tfstate"
+    region = "us-west-2"
+  }
+}
+
 provider "aws" {
   region = "us-west-2"
 }
