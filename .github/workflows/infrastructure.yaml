@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'terraform/**'
+      - '*.tf'
       - '.github/workflows/infrastructure.yml'
       
   workflow_dispatch:
