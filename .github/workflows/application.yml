@@ -84,7 +84,7 @@ jobs:
 
       - name: Deployment on kubernetes 
         run: |
-          sudo aws eks update-kubeconfig --name my-cluster-eks --region us-west-2
+          sudo aws eks update-kubeconfig --name my-eks-cluster --region us-west-2
           sudo kubectl apply -f k8s/student-deploy.yaml
           sudo kubectl apply -f k8s/student-svc.yaml
           sudo kubectl get pods -o wide
