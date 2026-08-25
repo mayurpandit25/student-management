@@ -87,6 +87,7 @@ jobs:
           aws eks update-kubeconfig --name my-eks-cluster --region us-west-2
           kubectl apply -f k8s/student-deploy.yaml
           kubectl apply -f k8s/student-svc.yaml
+          sleep 30
           kubectl get pods -o wide
           kubectl get svc -o wide
 
