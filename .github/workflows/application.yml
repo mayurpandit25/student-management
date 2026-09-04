@@ -12,4 +12,7 @@ jobs:
     steps:
       - name: Chekout Code 
         uses: actions/checkout@v5
+
+      - name: Build Application
+        run: mvn clean package 
         
