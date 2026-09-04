@@ -49,4 +49,8 @@ jobs:
             | jq -r '.projectStatus.status')
           echo "Quality Gate: $STATUS"
           [ "$STATUS" = "OK" ] || exit 1
-          
+
+      - name: Build With Docker 
+        run: |
+          docker build -t student .
+          docker images
