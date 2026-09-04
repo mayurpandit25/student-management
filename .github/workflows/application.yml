@@ -68,5 +68,4 @@ jobs:
           sudo apt-get install -y trivy
 
       - name: Scanning Docker Image
-        run: |     
-          trivy image --scanners vuln --severity HIGH,CRITICAL --exit code 0 student:latest
+        run: trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 0 student:latest
