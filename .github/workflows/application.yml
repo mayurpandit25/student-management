@@ -49,3 +49,6 @@ jobs:
             | jq -r '.projectStatus.status')
           echo "Quality Gate: $STATUS"
           [ "$STATUS" = "OK" ] || exit 1
+
+
+          
