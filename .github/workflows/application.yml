@@ -76,5 +76,28 @@ jobs:
           docker tag student:latest 822920903800.dkr.ecr.us-west-2.amazonaws.com/student:latest
           docker push 822920903800.dkr.ecr.us-west-2.amazonaws.com/student:latest
 
+      - name: setup terraform
+        uses: hashicorp/setup-terraform@v5
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Validate 
+        run: terraform validate
+
+      - name: Terraform plan
+        run: terraform plan
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      - name: Setup Kubectl
+        uses: azure/setup-kubectl@v5
+        with:
+          version: latest
+
+      - name: Configure kubectl for eks
+        run: aws eks update-kubeconfig --name my-eks-cluster --region us-west-2
+
 
           
