@@ -99,5 +99,11 @@ jobs:
       - name: Configure kubectl for eks
         run: aws eks update-kubeconfig --name my-eks-cluster --region us-west-2
 
+      - name: Deployment on Kubernetes
+        run: |
+          kubectl apply -f k8s/
+          kubectl get pods -o wide
+          kubectl get svc -o wide
+
 
           
