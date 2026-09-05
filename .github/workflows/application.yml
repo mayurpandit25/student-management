@@ -1,0 +1,14 @@
+name: CI/CD for student-management 
+
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        run: actions/checkout@v5
