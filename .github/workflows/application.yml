@@ -50,4 +50,7 @@ jobs:
           echo "Quality Gate: $STATUS"
           [ "$STATUS" = "OK" ] || exit 1
 
+
+
+
         
