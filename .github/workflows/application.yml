@@ -81,3 +81,19 @@ jobs:
           aws ecr get-login-password --region us-west-2 | docker login --username AWS --password-stdin 822920903800.dkr.ecr.us-west-2.amazonaws.com
           docker tag student:latest 822920903800.dkr.ecr.us-west-2.amazonaws.com/student:latest
           docker push 822920903800.dkr.ecr.us-west-2.amazonaws.com/student:latest
+
+      - name: Install Kubectl
+        uses: azure/setup-kubectl@v5
+        with:
+          version: latest
+
+      - name: Configure EKS cluster
+        run: aws eks update-kubeconfig --name my-eks-cluster --region us-west-2
+
+      - name: Deployment on kubernetes
+        run: |
+          kubectl apply -f k8s/
+          kubectl get pods
+          sleep 30
+          kubectl get pods 
+          kubectl get svc -o wide
